@@ -82,6 +82,7 @@ fun TextFieldComponent(
             visualTransformation = visualTransformation,
             placeholder = null
         )
+
         if (hasError) {
             Text(
                 text = errorText.joinToString("\n"),

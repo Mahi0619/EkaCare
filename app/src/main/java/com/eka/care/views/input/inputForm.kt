@@ -1,4 +1,5 @@
 package com.eka.care.views.input
+
 import android.widget.Toast
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
@@ -42,7 +43,7 @@ fun InputForm(viewModel: UserViewModel, navController: NavController) {
 
     val context = LocalContext.current
     // State for handling back press
-
+    viewModel.clearInputFields()
 
     Scaffold(
         topBar = {
@@ -50,7 +51,6 @@ fun InputForm(viewModel: UserViewModel, navController: NavController) {
                 title = { Text(text = "Add User") },
                 navigationIcon = {
                     IconButton(onClick = { navController.navigateUp() }) {
-
                     }
                 },
                 colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -132,7 +132,10 @@ fun InputForm(viewModel: UserViewModel, navController: NavController) {
                 }
 
                 // View Saved Data Button
-                Button(onClick = { navController.navigate("userListScreen") }) {
+                Button(onClick = {
+                    viewModel.clearInputFields()
+                    navController.navigate("userListScreen")
+                }) {
                     Text("View Saved Data")
                 }
 

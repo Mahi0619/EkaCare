@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.eka.care.data.model.User
 
 @Dao
@@ -25,5 +26,7 @@ interface UserDao {
     fun deleteUserById(userId: Int)
 
 
+    @Update
+    fun updateUser(user: User)
 
 }

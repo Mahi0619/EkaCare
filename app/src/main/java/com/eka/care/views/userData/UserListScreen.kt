@@ -78,15 +78,19 @@ fun UserListScreen(viewModel: UserViewModel, navController: NavController) {
                         }
                     }
                 } else {
-                    // Show list of users if the list is not empty
                     LazyColumn {
                         items(users.withIndex().toList()) { (index, user) ->
                             UserItem(
                                 user = user,
                                 isEven = index % 2 == 0,
-                                //onDelete = { userToDelete ->
-                                   // viewModel.deleteUser(userToDelete) // Call delete function in ViewModel
-                                //}
+                                onEdit = { userToEdit ->
+                                    // Navigate to UpdateFormScreen with userId
+                                    navController.navigate("updateFormScreen/${userToEdit.id}")
+                                },
+                                onDelete = { userToDelete ->
+                                    // Handle delete action
+                                    viewModel.deleteUser(userToDelete)
+                                }
                             )
                         }
                     }
@@ -98,10 +102,7 @@ fun UserListScreen(viewModel: UserViewModel, navController: NavController) {
 
 
 
-
-
 /*
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UserListScreen(viewModel: UserViewModel, navController: NavController) {
@@ -145,19 +146,50 @@ fun UserListScreen(viewModel: UserViewModel, navController: NavController) {
 
                         Spacer(modifier = Modifier.height(16.dp))
 
-                        Button(onClick = { navController.navigate("inputForm")}) {
+                        Button(onClick = { navController.navigate("inputForm") }) {
                             Text(text = "Add Person")
                         }
                     }
                 } else {
                     // Show list of users if the list is not empty
+                    */
+/*LazyColumn {
+                        items(users.withIndex().toList()) { (index, user) ->
+                            UserItem(
+                                user = user,
+                                isEven = index % 2 == 0,
+                                //onDelete = { userToDelete ->
+                                   // viewModel.deleteUser(userToDelete) // Call delete function in ViewModel
+                                //}
+                            )
+                        }
+                    }*//*
+
+
                     LazyColumn {
                         items(users.withIndex().toList()) { (index, user) ->
-                            UserItem(user = user, isEven = index % 2 == 0)
+                            UserItem(
+                                user = user,
+                                isEven = index % 2 == 0,
+                                onEdit = { userToEdit ->
+                                    // Handle edit action
+                                    // e.g., navigate to an edit screen with user details
+                                   // viewModel.updateUser(user)
+                                },
+                                onDelete = { userToDelete ->
+                                    // Handle delete action
+                                    viewModel.deleteUser(userToDelete)
+                                }
+                            )
                         }
                     }
+
                 }
             }
         }
     )
-}*/
+}
+*/
+
+
+
